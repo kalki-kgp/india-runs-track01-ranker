@@ -32,7 +32,7 @@ ai_tools_used:
   - "Claude-Code"
 
 ai_usage_summary: |
-  Used AI coding assistants for challenge understanding, architecture discussion,
+  Used Claude Code for challenge understanding, architecture discussion,
   implementation support, debugging, documentation, and comparison against a
   pure-LLM baseline. The submitted ranking step is deterministic local Python:
   it performs no hosted LLM calls, no network calls, no GPU inference, and no
