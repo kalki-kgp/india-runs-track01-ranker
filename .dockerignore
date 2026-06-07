@@ -1,0 +1,12 @@
+.git
+.DS_Store
+__pycache__
+.venv
+venv
+candidates.jsonl
+candidates.jsonl.gz
+condensed_all.json
+condensed_batch_*.json
+llm_candidates_part*.txt
+llm_submission.csv
+*.docx

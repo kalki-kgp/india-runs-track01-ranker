@@ -1,0 +1,19 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Large released candidate pool; keep local, do not publish accidentally.
+candidates.jsonl
+candidates.jsonl.gz
+
+# Exploratory / comparison artifacts.
+condensed_all.json
+condensed_batch_*.json
+llm_candidates_part*.txt
+llm_submission.csv
+
+# Local run artifacts.
+*.log
+.streamlit/secrets.toml

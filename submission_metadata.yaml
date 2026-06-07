@@ -1,0 +1,57 @@
+# Redrob Hackathon - Submission Metadata
+
+team_name: "solo-redrob-ranker"
+
+primary_contact:
+  name: "TODO: Krishna / your full registered name"
+  email: "TODO: your registered email"
+  phone: "TODO: +91-XXXXXXXXXX"
+
+team_members:
+  - name: "TODO: Krishna / your full registered name"
+    email: "TODO: your registered email"
+    role: "Solo participant"
+
+github_repo: "TODO: https://github.com/YOUR_USERNAME/YOUR_REPO"
+sandbox_link: "TODO: Streamlit Cloud / HuggingFace Space / Replit / Docker link"
+
+reproduce_command: "python3 rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+compute:
+  platform: "MacBook Air M1"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.14.5"
+  os: "macOS 26.4.1"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "Claude"
+  - "ChatGPT"
+
+ai_usage_summary: |
+  Used AI coding assistants for challenge understanding, architecture discussion,
+  implementation support, debugging, documentation, and comparison against a
+  pure-LLM baseline. The submitted ranking step is deterministic local Python:
+  it performs no hosted LLM calls, no network calls, no GPU inference, and no
+  model downloads during ranking.
+
+methodology_summary: |
+  Deterministic offline candidate ranker for the Senior AI Engineer JD. The
+  system combines title relevance, career evidence for ranking/search/retrieval
+  systems, skill-taxonomy fit, behavioral availability signals, experience,
+  location, education, and explicit honeypot/keyword-stuffer penalties. It
+  rejects structurally suspicious profiles before ranking and generates
+  candidate-specific reasoning from profile facts. The full 100K-candidate
+  ranking runs locally on CPU in roughly 20-30 seconds and produces a validator-
+  passing top-100 CSV.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
