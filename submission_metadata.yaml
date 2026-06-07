@@ -12,7 +12,7 @@ team_members:
     email: "TODO: your registered email"
     role: "Solo participant"
 
-github_repo: "TODO: https://github.com/YOUR_USERNAME/YOUR_REPO"
+github_repo: "https://github.com/kalki-kgp/india-runs-track01-ranker"
 sandbox_link: "TODO: Streamlit Cloud / HuggingFace Space / Replit / Docker link"
 
 reproduce_command: "python3 rank.py --candidates ./candidates.jsonl --out ./submission.csv"
