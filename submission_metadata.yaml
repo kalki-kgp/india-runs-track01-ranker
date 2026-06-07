@@ -3,17 +3,17 @@
 team_name: "solo-redrob-ranker"
 
 primary_contact:
-  name: "TODO: Krishna / your full registered name"
-  email: "TODO: your registered email"
-  phone: "TODO: +91-XXXXXXXXXX"
+  name: "Krishna Paikine"
+  email: "krishnapaikine777@gmail.com"
+  phone: "+91-7385166726"
 
 team_members:
-  - name: "TODO: Krishna / your full registered name"
-    email: "TODO: your registered email"
+  - name: "Krishna Paikine"
+    email: "krishnapaikine777@gmail.com"
     role: "Solo participant"
 
 github_repo: "https://github.com/kalki-kgp/india-runs-track01-ranker"
-sandbox_link: "TODO: Streamlit Cloud / HuggingFace Space / Replit / Docker link"
+sandbox_link: "https://krishna-pakine-redrob-ai-hack.streamlit.app/"
 
 reproduce_command: "python3 rank.py --candidates ./candidates.jsonl --out ./submission.csv"
 
@@ -29,8 +29,7 @@ compute:
   pre_computation_time_minutes: 0
 
 ai_tools_used:
-  - "Claude"
-  - "ChatGPT"
+  - "Claude-Code"
 
 ai_usage_summary: |
   Used AI coding assistants for challenge understanding, architecture discussion,

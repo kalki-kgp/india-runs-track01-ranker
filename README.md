@@ -1,6 +1,6 @@
 # Redrob Track 01 Candidate Ranker
 
-Solo submission scaffold for **India Runs by Redrob AI - Track 01: The Data & AI Challenge / Intelligent Candidate Discovery**.
+Solo submission for **India Runs by Redrob AI - Track 01: The Data & AI Challenge / Intelligent Candidate Discovery**.
 
 The task is to rank the top 100 candidates for the supplied **Senior AI Engineer - Founding Team** job description. The ranker reads `candidates.jsonl`, scores each profile offline, and writes a CSV in the required format:
 
@@ -30,7 +30,7 @@ No hosted LLM calls, network access, GPU, or external model downloads are used d
 - `validate_submission.py` - provided CSV format validator
 - `app.py` - small Streamlit demo/sandbox app for sample-sized candidate files
 - `requirements.txt` - dependencies for the demo app only
-- `submission_metadata.yaml` - portal metadata draft; contact fields still need to be filled
+- `submission_metadata.yaml` - submission metadata matching the portal fields
 - `Dockerfile` - optional sandbox container for the Streamlit demo
 
 Large local inputs and exploratory artifacts are intentionally ignored by git:
@@ -64,7 +64,13 @@ On a MacBook Air M1 with 16 GB RAM, the ranking run completes in roughly 20-30 s
 
 ## Demo / Sandbox
 
-For a hosted sandbox, deploy this repo as a Streamlit app and use `app.py` as the entrypoint.
+Hosted sandbox:
+
+```text
+https://krishna-pakine-redrob-ai-hack.streamlit.app/
+```
+
+The sandbox runs the same scoring pipeline on a small uploaded JSON/JSONL sample or on the bundled `sample_candidates.json`.
 
 Local demo:
 
@@ -85,24 +91,6 @@ docker run --rm -p 7860:7860 redrob-ranker
 Then open `http://localhost:7860`.
 
 The demo is meant for small samples, not the full 100K file. The full ranking should be reproduced with the CLI command above.
-
-## Submission Notes
-
-The official Track 01 checklist asks for:
-
-- code repository with complete implementation
-- README explaining methodology and architecture
-- ranked output CSV in the predefined format
-- portal metadata
-- sandbox/demo link
-
-Before portal submission, update:
-
-- `submission_metadata.yaml`
-- GitHub repository URL
-- sandbox URL
-- final participant/team name
-- contact email and phone
 
 ## AI Tools Declaration
 
