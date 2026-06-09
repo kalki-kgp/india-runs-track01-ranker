@@ -19,7 +19,12 @@ The model combines:
 - skill fit across retrieval/search, ML core, LLM fine-tuning, ML engineering, and infra taxonomies
 - behavioral signals such as recent activity, open-to-work status, response rate, notice period, GitHub activity, and interview completion
 - experience, location, and education fit
-- honeypot and impossible-profile detection before final ranking
+- corroborated skill depth: expert claims backed by years of real usage
+- honeypot and impossible-profile detection before final ranking:
+  - tenures that start before the employer company was founded (e.g. claimed 2018 start at a company founded in 2023)
+  - "expert" proficiency claims with zero usage duration
+  - claimed years-of-experience far exceeding the actual career-history span
+  - stint durations inconsistent with their own start/end dates
 
 No hosted LLM calls, network access, GPU, or external model downloads are used during ranking.
 

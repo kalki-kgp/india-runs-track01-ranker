@@ -42,7 +42,11 @@ methodology_summary: |
   Deterministic offline candidate ranker for the Senior AI Engineer JD. The
   system combines title relevance, career evidence for ranking/search/retrieval
   systems, skill-taxonomy fit, behavioral availability signals, experience,
-  location, education, and explicit honeypot/keyword-stuffer penalties. It
+  location, education, corroborated expert-skill depth, and explicit
+  honeypot/keyword-stuffer penalties. Honeypots are detected via structural
+  impossibilities: tenures predating the employer's founding year,
+  zero-duration "expert" claims, and YOE claims exceeding the verifiable
+  career span. It
   rejects structurally suspicious profiles before ranking and generates
   candidate-specific reasoning from profile facts. The full 100K-candidate
   ranking runs locally on CPU in roughly 20-30 seconds and produces a validator-

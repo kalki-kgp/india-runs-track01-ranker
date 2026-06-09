@@ -18,6 +18,19 @@ from typing import Any
 
 REFERENCE_DATE = date(2026, 6, 1)
 
+# Real-world founding years for companies appearing in the dataset.
+# The spec's honeypot type 1 is "N years of experience at a company founded
+# fewer than N years ago" — a tenure that starts before the company existed
+# is structurally impossible. Only unambiguous, well-known founding years
+# are listed to avoid false positives.
+COMPANY_FOUNDED = {
+    "Sarvam AI": 2023,
+    "Krutrim": 2023,
+    "Glance": 2019,
+    "Rephrase.ai": 2019,
+    "CRED": 2018,
+}
+
 # ─────────────────────────────────────────────────────────────────────
 # Skill taxonomies — derived from the JD requirements
 # ─────────────────────────────────────────────────────────────────────
@@ -156,11 +169,15 @@ PRODUCT_COMPANIES = {
     "uber", "twitter", "linkedin", "netflix", "spotify",
     "stripe", "airbnb", "slack", "dropbox", "atlassian",
     "mad street den", "yellow.ai", "aganitha",
+    "adobe", "salesforce",
+    "sarvam ai", "krutrim", "observe.ai", "rephrase.ai", "niramai",
+    "saarthi.ai", "wysa", "verloop.io", "haptik", "glance", "locobuzz",
 }
 
 AI_INDUSTRIES = {
     "ai/ml", "artificial intelligence", "machine learning",
     "data science", "analytics",
+    "healthtech ai", "conversational ai", "voice ai", "ai services",
 }
 
 PRODUCT_INDUSTRIES = {
@@ -206,9 +223,15 @@ def detect_honeypot(candidate: dict) -> bool:
     career = candidate.get("career_history", [])
     profile = candidate.get("profile", {})
 
-    expert_count = sum(1 for s in skills if s.get("proficiency") == "expert")
-    if expert_count >= 8:
-        return True
+    # Honeypot type 1 (per spec): tenure at a company that starts before the
+    # company was founded. NOTE: a high expert-skill count alone is NOT a
+    # honeypot signal — the spec's example is expert proficiency with ZERO
+    # duration. Corroborated expert skills (real durations/endorsements) mark
+    # the strongest genuine candidates and must not be excluded.
+    for ch in career:
+        founded = COMPANY_FOUNDED.get(ch.get("company"))
+        if founded and ch.get("start_date", "9999") < str(founded):
+            return True
 
     expert_zero_duration = sum(
         1 for s in skills
@@ -703,6 +726,16 @@ def score_candidate(candidate: dict) -> dict | None:
     education_s = score_education(candidate)
     stuffer_pen = keyword_stuffer_penalty(candidate)
 
+    # Corroborated skill depth: an "expert" claim backed by years of actual
+    # usage (duration) is the strongest skill evidence available — the inverse
+    # of the zero-duration expert honeypot pattern. Small additive bonus,
+    # capped, so genuine depth separates from keyword breadth.
+    corroborated_experts = sum(
+        1 for s in candidate.get("skills", [])
+        if s.get("proficiency") == "expert" and s.get("duration_months", 0) >= 24
+    )
+    depth_bonus = min(corroborated_experts, 8) / 8.0 * 0.03
+
     final_score = (
         title_s * 0.28
         + career_s * 0.25
@@ -711,6 +744,7 @@ def score_candidate(candidate: dict) -> dict | None:
         + experience_s * 0.08
         + location_s * 0.04
         + education_s * 0.03
+        + depth_bonus
         + stuffer_pen
     )
 
